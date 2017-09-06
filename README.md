@@ -13,9 +13,11 @@ To meet requirements necessary for playability, the game must meet the following
 The game will display the 4 x 4 grid along with the user's current and best scores. Controls for the game will be the arrow keys allowing the user to pick which direction they wish to swipe.
 
 ![](2048.png)
+
 Game board and number-tiles.
 
 ![](modal.png)
+
 Game-over modal.
 
 ### Technologies and Libraries
