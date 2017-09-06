@@ -1,0 +1,36 @@
+.game-board {
+  margin-top: 40px;
+  position: relative;
+  width: 500px;
+  height: 500px;
+  padding: 15px;
+  margin: 40px;
+  box-sizing: border-box;
+  border-radius: 6px;
+  background-color: #BBADA0;
+}
+
+.row {
+  margin-bottom: 15px;
+}
+
+.row:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.cell {
+  width: 106.25px;
+  height: 106.25px;
+  margin-right: 15px;
+  box-sizing: border-box;
+  float: left;
+  display: block;
+  border-radius: 3px;
+  background-color: #CDC1B4;
+}
+
+.cell:last-child {
+  margin-right: 0;
+}
