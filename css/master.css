@@ -4,13 +4,54 @@ body {
   justify-content: center;
 }
 
+.game-name {
+  margin-top: 80px;
+  display: flex;
+  justify-content: space-between;
+  width: 500px;
+  align-items: center;
+}
+
+.game-name h1 {
+  font-family: "Clear Sans", "Helvetica Neue", Arial, sans-serif;
+  font-size: 80px;
+  font-weight: bold;
+  color: #776E65;
+  display: block;
+
+}
+
+.game-name div {
+  display: block;
+}
+
+.score-container{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background-color: #bbada0;
+  padding: 15px 25px;
+  font-size: 25px;
+  height: 25px;
+  line-height: 47px;
+  font-weight: bold;
+  border-radius: 3px;
+  color: white;
+  margin-top: 8px;
+  text-align: center;
+}
+
+/*.score-container span {
+  margin-top: 10px;
+}*/
+
 .game-board {
   position: relative;
   display: inline-block;
   width: 500px;
   height: 500px;
   padding: 15px;
-  margin: 40px;
+  margin: 40px auto 40px auto;
   box-sizing: border-box;
   border-radius: 6px;
   background-color: #BBADA0;
@@ -75,3 +116,33 @@ div[data-value="64"] {
   background-color: #F65E3B;
   color: white;
 }
+
+div[data-value="128"] {
+  background-color: #EDCC61;
+  color: white;
+}
+
+/*div[data-value="256"] {
+  background-color:
+  color:
+}
+
+div[data-value="512"] {
+  background-color:
+  color:
+}
+
+div[data-value="1024"] {
+  background-color:
+  color:
+}
+
+div[data-value="2048"] {
+  background-color:
+  color:
+}
+
+div[data-value="4096"] {
+  background-color:
+  color:
+}*/

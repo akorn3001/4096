@@ -23,7 +23,7 @@ plugins = plugins.concat(
 
 module.exports = {
   context: __dirname,
-  entry: './js/board.jsx',
+  entry: './js/board.js',
   output: {
     path: path.resolve(__dirname, './js'),
     filename: 'bundle.js',
