@@ -1,6 +1,12 @@
+body {
+  background-color: #FAF8EF;
+  display: flex;
+  justify-content: center;
+}
+
 .game-board {
-  margin-top: 40px;
   position: relative;
+  display: inline-block;
   width: 500px;
   height: 500px;
   padding: 15px;
@@ -38,4 +44,34 @@
 
 .cell:last-child {
   margin-right: 0;
+}
+
+div[data-value="2"] {
+  background-color: #EEE4DA;
+  color: #776E65;
+}
+
+div[data-value="4"] {
+  background-color: #EDE0C8;
+  color: #776E65;
+}
+
+div[data-value="8"] {
+  background-color: #F2B179;
+  color: white;
+}
+
+div[data-value="16"] {
+  background-color: #F59563;
+  color: white;
+}
+
+div[data-value="32"] {
+  background-color: #F67C5F;
+  color: white;
+}
+
+div[data-value="64"] {
+  background-color: #F65E3B;
+  color: white;
 }

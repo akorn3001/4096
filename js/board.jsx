@@ -20,18 +20,16 @@ class Board {
     document.addEventListener('keydown', (event) => {
       switch(event.keyCode) {
         case 37:
-        this.moveLeft();
-          console.log('LEFT');
+          this.moveLeft();
           break;
         case 38:
-          console.log('UP');
+          this.moveUp();
           break;
         case 39:
           this.moveRight();
-          console.log('RIGHT');
           break;
         case 40:
-          console.log('DOWN');
+          this.moveDown();
           break;
         case 32:
           this.spawn();
@@ -77,7 +75,7 @@ class Board {
         this.addTile(xCoord, yCoord, this.grid);
         return this.grid;
       } else {
-        return this.spawn();
+        this.spawn();
       }
     }
   }
@@ -87,62 +85,104 @@ class Board {
     this.render();
   }
 
+move(rowStart, colStart, rowChange, colChange) {
+  const rowEnd = rowStart + rowChange;
+  const colEnd = colStart + colChange;
+
+  if (rowEnd <= 3 && colEnd <= 3 && rowEnd >= 0 && colEnd >= 0) {
+    if (!this.grid[rowEnd][colEnd]) {
+      this.grid[rowEnd][colEnd] = this.grid[rowStart][colStart];
+      this.clearCell(rowStart, colStart);
+      this.move(rowEnd, colEnd, rowChange, colChange);
+
+    } else if (this.grid[rowEnd][colEnd] === this.grid[rowStart][colStart]) {
+      this.grid[rowEnd][colEnd] += this.grid[rowStart][colStart];
+      this.clearCell(rowStart, colStart);
+    }
+  }
+
+  return [rowEnd, colEnd];
+}
+
+
+
+  // moveRight() {
+  //
+  //   for (let rowIdx = 0; rowIdx < 4; rowIdx++) {
+  //     for (let colIdx = 2; colIdx >= 0; colIdx--) {
+  //       if (!this.grid[rowIdx][colIdx + 1]) {
+  //         this.grid[rowIdx][colIdx + 1] = this.grid[rowIdx][colIdx];
+  //         this.clearCell(rowIdx, colIdx);
+  //       } else if (this.grid[rowIdx][colIdx + 1] === this.grid[rowIdx][colIdx]) {
+  //         this.grid[rowIdx][colIdx + 1] += this.grid[rowIdx][colIdx];
+  //         this.clearCell(rowIdx, colIdx);
+  //       }
+  //     }
+  //   }
+  // }
+
+  // moveLeft() {
+  //
+  //   this.grid.forEach((row, rowIdx) => {
+  //     for (let colIdx = 1; colIdx <= 3; colIdx++) {
+  //
+  //       if (!this.grid[rowIdx][colIdx - 1]) {
+  //         this.grid[rowIdx][colIdx - 1] = this.grid[rowIdx][colIdx];
+  //         this.clearCell(rowIdx, colIdx);
+  //       } else if (this.grid[rowIdx][colIdx - 1] === this.grid[rowIdx][colIdx]) {
+  //         this.grid[rowIdx][colIdx - 1] += this.grid[rowIdx][colIdx];
+  //         this.clearCell(rowIdx, colIdx);
+  //       }
+  //
+  //       this.render();
+  //     }
+  //   });
+  //
+  // }
+
   moveRight() {
-    this.grid.forEach((row, rowIdx) => {
+    for (let rowIdx = 0; rowIdx < 4; rowIdx++) {
       for (let colIdx = 2; colIdx >= 0; colIdx--) {
-        // if (colIdx === 3 || this.grid[rowIdx][colIdx + 1] !== this.grid[rowIdx][colIdx]) {
-        //   return;
-        // }
-
-        if (!this.grid[rowIdx][colIdx + 1]) {
-          this.grid[rowIdx][colIdx + 1] = this.grid[rowIdx][colIdx];
-          this.clearCell(rowIdx, colIdx);
-        } else if (this.grid[rowIdx][colIdx + 1] === this.grid[rowIdx][colIdx]) {
-          this.grid[rowIdx][colIdx + 1] += this.grid[rowIdx][colIdx];
-          this.clearCell(rowIdx, colIdx);
-        }
-
-        // this.moveRight();
+        this.move(rowIdx, colIdx, 0, 1);
         this.render();
       }
-    });
-
+    }
   }
 
   moveLeft() {
-    this.grid.forEach((row, rowIdx) => {
-      for (let colIdx = 1; colIdx <= 3; colIdx++) {
-        // if (colIdx === 3 || this.grid[rowIdx][colIdx + 1] !== this.grid[rowIdx][colIdx]) {
-        //   return;
-        // }
-
-        if (!this.grid[rowIdx][colIdx - 1]) {
-          this.grid[rowIdx][colIdx - 1] = this.grid[rowIdx][colIdx];
-          this.clearCell(rowIdx, colIdx);
-        } else if (this.grid[rowIdx][colIdx - 1] === this.grid[rowIdx][colIdx]) {
-          this.grid[rowIdx][colIdx - 1] += this.grid[rowIdx][colIdx];
-          this.clearCell(rowIdx, colIdx);
-        }
-
-        // this.moveLeft();
+    for (let rowIdx = 0; rowIdx < 4; rowIdx++) {
+      for (let colIdx = 1; colIdx < 4; colIdx++) {
+        this.move(rowIdx, colIdx, 0, -1);
         this.render();
       }
-    });
-
-  }
-
-  moveUp() {
-
+    }
   }
 
   moveDown() {
+    for (let colIdx = 0; colIdx < 4; colIdx++) {
+      for (let rowIdx = 2; rowIdx >= 0; rowIdx--) {
+        this.move(rowIdx, colIdx, 1, 0);
+        this.render();
+      }
+    }
+  }
 
+  moveUp() {
+    for (let colIdx = 0; colIdx < 4; colIdx++) {
+      for (let rowIdx = 1; rowIdx < 4; rowIdx++) {
+        this.move(rowIdx, colIdx, -1, 0);
+        this.render();
+      }
+    }
   }
 
   render() {
+    let div;
     this.grid.forEach((row, idx1) => {
       row.forEach((el, idx2) => {
-        document.getElementById(`${idx1}-${idx2}`).innerHTML = el;
+        div = document.getElementById(`${idx1}-${idx2}`);
+        div.innerHTML = el;
+        div.setAttribute('data-value', el);
       });
     });
 
