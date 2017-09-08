@@ -31,8 +31,7 @@ body {
   flex-direction: column;
   background-color: #bbada0;
   padding: 15px 25px;
-  font-size: 25px;
-  height: 25px;
+  height: 75px;
   line-height: 47px;
   font-weight: bold;
   border-radius: 3px;
@@ -41,9 +40,13 @@ body {
   text-align: center;
 }
 
-/*.score-container span {
-  margin-top: 10px;
-}*/
+.score-container span {
+  font-size: 15px;
+}
+
+#score {
+  font-size: 40px;
+}
 
 .game-board {
   position: relative;
@@ -99,27 +102,27 @@ div[data-value="4"] {
 
 div[data-value="8"] {
   background-color: #F2B179;
-  color: white;
+  color: #F9F6F2;
 }
 
 div[data-value="16"] {
   background-color: #F59563;
-  color: white;
+  color: #F9F6F2;
 }
 
 div[data-value="32"] {
   background-color: #F67C5F;
-  color: white;
+  color: #F9F6F2;
 }
 
 div[data-value="64"] {
   background-color: #F65E3B;
-  color: white;
+  color: #F9F6F2;
 }
 
 div[data-value="128"] {
   background-color: #EDCC61;
-  color: white;
+  color: #F9F6F2;
 }
 
 /*div[data-value="256"] {
