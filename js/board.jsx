@@ -101,7 +101,7 @@ move(rowStart, colStart, rowChange, colChange) {
     }
   }
 
-  return [rowEnd, colEnd];
+
 }
 
 
@@ -183,6 +183,8 @@ move(rowStart, colStart, rowChange, colChange) {
         div = document.getElementById(`${idx1}-${idx2}`);
         div.innerHTML = el;
         div.setAttribute('data-value', el);
+        $(div).addClass('animated bounceIn');
+
       });
     });
 
