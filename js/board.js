@@ -167,7 +167,6 @@ class Board {
 
   moveRight() {
     let somethingMoved = false;
-    // const originalGrid = JSON.stringify(this.grid);
 
     for (let rowIdx = 0; rowIdx < 4; rowIdx++) {
       for (let colIdx = 2; colIdx >= 0; colIdx--) {
@@ -177,7 +176,6 @@ class Board {
       }
     }
 
-    // return (JSON.stringify(this.grid) === originalGrid);
     return somethingMoved;
   }
 
