@@ -16,12 +16,12 @@ class Board {
     window.addEventListener('keydown', (event) => {
       switch(event.keyCode) {
         case 37:
-          if (!this.moveLeft()) this.spawn();
+          if (this.moveLeft()) this.spawn();
           this.render();
           break;
         case 38:
           event.preventDefault();
-          if (!this.moveUp()) this.spawn();
+          if (this.moveUp()) this.spawn();
           this.render();
           break;
         case 39:
@@ -182,39 +182,45 @@ class Board {
   }
 
   moveLeft() {
-    const originalGrid = JSON.stringify(this.grid);
+    let somethingMoved = false;
 
     for (let rowIdx = 0; rowIdx < 4; rowIdx++) {
       for (let colIdx = 1; colIdx < 4; colIdx++) {
-        this.move(rowIdx, colIdx, 0, -1);
+        if (this.move(rowIdx, colIdx, 0, -1)) {
+          somethingMoved = true;
+        }
       }
     }
 
-    return (JSON.stringify(this.grid) === originalGrid);
+    return somethingMoved;
   }
 
   moveDown() {
-    const originalGrid = JSON.stringify(this.grid);
+    let somethingMoved = false;
 
     for (let colIdx = 0; colIdx < 4; colIdx++) {
       for (let rowIdx = 2; rowIdx >= 0; rowIdx--) {
-        this.move(rowIdx, colIdx, 1, 0);
+        if (this.move(rowIdx, colIdx, 1, 0)) {
+          somethingMoved = true;
+        }
       }
     }
 
-    return (JSON.stringify(this.grid) === originalGrid);
+    return somethingMoved;
   }
 
   moveUp() {
-    const originalGrid = JSON.stringify(this.grid);
+    let somethingMoved = false;
 
     for (let colIdx = 0; colIdx < 4; colIdx++) {
       for (let rowIdx = 1; rowIdx < 4; rowIdx++) {
-        this.move(rowIdx, colIdx, -1, 0);
+        if (this.move(rowIdx, colIdx, -1, 0)) {
+          somethingMoved = true;
+        }
       }
     }
 
-    return (JSON.stringify(this.grid) === originalGrid);
+    return somethingMoved;
   }
 
   render() {
