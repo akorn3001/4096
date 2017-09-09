@@ -13,13 +13,14 @@ class Board {
         [null, null, null, null]
       ];
 
-    document.addEventListener('keydown', (event) => {
+    window.addEventListener('keydown', (event) => {
       switch(event.keyCode) {
         case 37:
           if (!this.moveLeft()) this.spawn();
           this.render();
           break;
         case 38:
+          event.preventDefault();
           if (!this.moveUp()) this.spawn();
           this.render();
           break;
@@ -28,6 +29,7 @@ class Board {
           this.render();
           break;
         case 40:
+          event.preventDefault();
           if (!this.moveDown()) this.spawn();
           this.render();
           break;
@@ -64,6 +66,57 @@ class Board {
     this.grid[2].includes(null) ||
     this.grid[3].includes(null));
   }
+
+  innerLost() {
+    for (let row = 1; row < 3; row++) {
+      for (let col = 1; col < 3; col++) {
+        let el = this.grid[row][col];
+
+        if (!this.grid[row + 1][col] || this.grid[row + 1][col] === el) {
+          return false;
+        } else if (!this.grid[row - 1][col] || this.grid[row - 1][col] === el) {
+          return false;
+        } else if (!this.grid[row][col + 1] || this.grid[row][col + 1] === el) {
+          return false;
+        } else if (!this.grid[row][col - 1] || this.grid[row][col - 1] === el) {
+          return false;
+        }
+      }
+    }
+
+    return true;
+  }
+
+  // outerLost() {
+  //   const topBottomLost = [0, 3].forEach(row => {
+  //     for (let col = 0; col < 3; col++) {
+  //       if (this.grid[row][col + 1] === this.grid[row][col]) {
+  //         return false;
+  //       }
+  //     }
+  //   });
+  //
+  //   const leftRightLost = [0, 3].forEach(col => {
+  //     for (let row = 0; row < 3; row++) {
+  //       if (this.grid[row + 1][col] === this.grid[row][col]) {
+  //         return false;
+  //       }
+  //     }
+  //   });
+  //
+  //   const cornerLost = (
+  //     !this.grid[0][0] ||
+  //     !this.grid[0][3] ||
+  //     !this.grid[3][0] ||
+  //     !this.grid[3][3]
+  //   );
+  //
+  //   return ((topBottomLost && leftRightLost && cornerLost) ? false : true);
+  // }
+
+  // lost() {
+  //   return this.innerLost() && this.outerLost();
+  // }
 
   twoOrFour() {
     return (Math.floor(Math.random() * 10) <= 2 ? 4 : 2);

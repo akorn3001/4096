@@ -41,11 +41,11 @@ body {
 }
 
 .score-container span {
-  font-size: 15px;
+  font-size: 13px;
 }
 
 #score {
-  font-size: 40px;
+  font-size: 25px;
 }
 
 .game-board {
@@ -123,29 +123,34 @@ div[data-value="64"] {
 div[data-value="128"] {
   background-color: #EDCC61;
   color: #F9F6F2;
+  font-size: 45px;
 }
 
-/*div[data-value="256"] {
-  background-color:
-  color:
+div[data-value="256"] {
+  background-color: #EDCC61;
+  color: #F9F6F2;
+  font-size: 45px;
 }
 
 div[data-value="512"] {
-  background-color:
-  color:
+  background-color: #EDCC61;
+  color: #F9F6F2;
+  font-size: 45px;
 }
 
 div[data-value="1024"] {
-  background-color:
-  color:
+  background-color: #EDCC61;
+  color: #F9F6F2;
+  font-size: 45px;
 }
 
 div[data-value="2048"] {
-  background-color:
-  color:
+  background-color: #EDCC61;
+  color: #F9F6F2;
+  font-size: 45px;
 }
 
-div[data-value="4096"] {
+/*div[data-value="4096"] {
   background-color:
   color:
 }*/
