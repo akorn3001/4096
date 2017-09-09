@@ -19,6 +19,7 @@
           <span>SCORE</span>
           <div id="score">0</div>
         </div>
+        <button id="new-game" type="button" name="button">New Game</button>
       </div>
 
       <div class="game-board">
@@ -58,7 +59,9 @@
 
     <script>
       document.addEventListener('DOMContentLoaded', () => {
-        console.log('Page Loaded')
+        let b = new Board();
+        b.newGame();
+        $('#new-game').click(b.newGame.bind(b));
       });
     </script>
   </body>

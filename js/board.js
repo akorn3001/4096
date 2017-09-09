@@ -25,7 +25,7 @@ class Board {
           this.render();
           break;
         case 39:
-          if (!this.moveRight()) this.spawn();
+          if (this.moveRight()) this.spawn();
           this.render();
           break;
         case 40:
@@ -157,7 +157,6 @@ class Board {
 
       } else if (this.grid[rowEnd][colEnd] === this.grid[rowStart][colStart]) {
         this.grid[rowEnd][colEnd] += this.grid[rowStart][colStart];
-        this.moved = true;
         this.score += this.grid[rowEnd][colEnd];
         this.best += this.grid[rowEnd][colEnd];
         this.clearCell(rowStart, colStart);
@@ -167,15 +166,19 @@ class Board {
   }
 
   moveRight() {
-    const originalGrid = JSON.stringify(this.grid);
+    let somethingMoved = false;
+    // const originalGrid = JSON.stringify(this.grid);
 
     for (let rowIdx = 0; rowIdx < 4; rowIdx++) {
       for (let colIdx = 2; colIdx >= 0; colIdx--) {
-        this.move(rowIdx, colIdx, 0, 1);
+        if (this.move(rowIdx, colIdx, 0, 1)) {
+          somethingMoved = true;
+        }
       }
     }
 
-    return (JSON.stringify(this.grid) === originalGrid);
+    // return (JSON.stringify(this.grid) === originalGrid);
+    return somethingMoved;
   }
 
   moveLeft() {
