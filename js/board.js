@@ -61,10 +61,11 @@ class Board {
   }
 
   notFull() {
-    return !(this.grid[0].includes(null) ||
-    this.grid[1].includes(null) ||
-    this.grid[2].includes(null) ||
-    this.grid[3].includes(null));
+    return (this.grid[0].includes(null) ||
+      this.grid[1].includes(null) ||
+      this.grid[2].includes(null) ||
+      this.grid[3].includes(null)
+    );
   }
 
   innerLost() {
@@ -87,37 +88,6 @@ class Board {
     return true;
   }
 
-  // outerLost() {
-  //   const topBottomLost = [0, 3].forEach(row => {
-  //     for (let col = 0; col < 3; col++) {
-  //       if (this.grid[row][col + 1] === this.grid[row][col]) {
-  //         return false;
-  //       }
-  //     }
-  //   });
-  //
-  //   const leftRightLost = [0, 3].forEach(col => {
-  //     for (let row = 0; row < 3; row++) {
-  //       if (this.grid[row + 1][col] === this.grid[row][col]) {
-  //         return false;
-  //       }
-  //     }
-  //   });
-  //
-  //   const cornerLost = (
-  //     !this.grid[0][0] ||
-  //     !this.grid[0][3] ||
-  //     !this.grid[3][0] ||
-  //     !this.grid[3][3]
-  //   );
-  //
-  //   return ((topBottomLost && leftRightLost && cornerLost) ? false : true);
-  // }
-
-  // lost() {
-  //   return this.innerLost() && this.outerLost();
-  // }
-
   twoOrFour() {
     return (Math.floor(Math.random() * 10) <= 2 ? 4 : 2);
   }
@@ -130,7 +100,7 @@ class Board {
     let xCoord = this.randNum();
     let yCoord = this.randNum();
 
-    if (!this.notFull()) {
+    if (this.notFull()) {
       if (!this.grid[xCoord][yCoord]) {
         this.addTile(xCoord, yCoord, this.grid);
         return this.grid;
@@ -149,13 +119,13 @@ class Board {
     const colEnd = colStart + colChange;
 
     if (rowEnd <= 3 && colEnd <= 3 && rowEnd >= 0 && colEnd >= 0) {
-      if (!this.grid[rowEnd][colEnd]) {
+      if (!this.grid[rowEnd][colEnd] && this.grid[rowStart][colStart]) {
         this.grid[rowEnd][colEnd] = this.grid[rowStart][colStart];
         this.clearCell(rowStart, colStart);
         this.move(rowEnd, colEnd, rowChange, colChange);
         return true;
 
-      } else if (this.grid[rowEnd][colEnd] === this.grid[rowStart][colStart]) {
+      } else if (this.grid[rowStart][colStart] && (this.grid[rowEnd][colEnd] === this.grid[rowStart][colStart])) {
         this.grid[rowEnd][colEnd] += this.grid[rowStart][colStart];
         this.score += this.grid[rowEnd][colEnd];
         this.best += this.grid[rowEnd][colEnd];
@@ -229,11 +199,19 @@ class Board {
         div = document.getElementById(`${idx1}-${idx2}`);
         div.innerHTML = el;
         div.setAttribute('data-value', el);
+        $(div).addClass('animated jello');
       });
     });
 
     scoreDiv = document.getElementById('score');
     scoreDiv.innerHTML = this.score;
 
+  }
+}
+
+class Tile {
+  constructor() {
+    this.lastPos = null;
+    this.currentPos = null;
   }
 }
