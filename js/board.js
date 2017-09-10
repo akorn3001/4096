@@ -16,6 +16,10 @@ class Board {
     return grid;
   }
 
+  // pos(row, col) {
+  //   return this.grid[row][col];
+  // }
+
   newGame() {
     this.grid.forEach((row, rowIdx) => {
       row.forEach((el, colIdx) => {
@@ -60,6 +64,31 @@ class Board {
 
     return true;
   }
+
+  // canMove(row, col, rowChange, colChange) {
+  //   if (
+  //     (this.grid[row][col] === this.grid[row + rowChange][col + colChange]) ||
+  //     (!this.grid[row + rowChange][col + colChange])
+  //   ) {
+  //     return true;
+  //   } else return false;
+  // }
+
+  // topBottomLost() {
+  //   [0, 3].forEach(row => {
+  //     for (let col = 0; col < 3; col++) {
+  //       if (this.canMove(row, col, 0, 1)) {
+  //         return false;
+  //       }
+  //     }
+  //   });
+  //
+  //   return true;
+  // }
+
+  // outerLost() {
+  //
+  // }
 
   twoOrFour() {
     return (Math.floor(Math.random() * 10) <= 2 ? 4 : 2);
@@ -167,18 +196,21 @@ class Board {
   render() {
     let div;
     let scoreDiv;
+    let bestDiv;
     this.grid.forEach((row, idx1) => {
       row.forEach((el, idx2) => {
         div = document.getElementById(`${idx1}-${idx2}`);
         div.innerHTML = el;
         div.setAttribute('data-value', el);
         $(div).addClass('animated pulse');
-        $("#1-1").css({ x: '30px' });
       });
     });
 
     scoreDiv = document.getElementById('score');
     scoreDiv.innerHTML = this.score;
+
+    // bestDiv = document.getElementById('best');
+    // bestDiv.innerHTML = this.best;
 
   }
 }
