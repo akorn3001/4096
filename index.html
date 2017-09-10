@@ -4,9 +4,10 @@
     <meta charset="utf-8">
     <title>2048 Clone</title>
     <link rel="stylesheet" href="./css/master.css">
-    <head>
+    <link rel="stylesheet" href="https://cdn.rawgit.com/konpa/devicon/df6431e323547add1b4cf45992913f15286456d3/devicon.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"></head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- <script src='jquery.transit.js'></script> -->
     <script src="./js/board.js"></script>
     <!-- <script src="./js/game.js"></script> -->
   </head>
@@ -52,7 +53,29 @@
         </div>
       </div>
 
-      <!-- <span>©Alex Kornfeld</span> -->
+      <p class="game-rules">
+        <strong>HOW TO PLAY:</strong> Use your <strong>arrow keys</strong> to
+        move the tiles. When two tiles with the same number touch, they
+        <strong>merge into one!</strong>
+      </p>
+
+      <hr>
+
+      <p class="credit">
+        <strong>NOTE:</strong> The game on this site is a <strong>A CLONE</strong>
+         of the original version of 2048. Please check out the page of the original
+         creator, <a href="https://gabrielecirulli.com/">Gabriele Cirulli</a>
+      </p>
+
+      <hr>
+
+      <footer>
+        <span>©Alex Kornfeld 2017</span>
+        <div>
+          <i class="devicon-github-plain colored"></i><a href="https://github.com/akorn3001/4096">Repo</a>
+        </div>
+      </footer>
+
     </div>
 
 
@@ -62,6 +85,33 @@
         let b = new Board();
         b.newGame();
         $('#new-game').click(b.newGame.bind(b));
+
+        window.addEventListener('keydown', (event) => {
+          switch(event.keyCode) {
+            case 37:
+              if (b.moveLeft()) b.spawn();
+              b.render();
+              break;
+            case 38:
+              event.preventDefault();
+              if (b.moveUp()) b.spawn();
+              b.render();
+              break;
+            case 39:
+              if (b.moveRight()) b.spawn();
+              b.render();
+              break;
+            case 40:
+              event.preventDefault();
+              if (!b.moveDown()) b.spawn();
+              b.render();
+              break;
+            case 32:
+              b.spawn();
+              b.render();
+              break;
+          }
+        });
       });
     </script>
   </body>

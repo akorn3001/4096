@@ -13,33 +13,6 @@ class Board {
         [null, null, null, null]
       ];
 
-    window.addEventListener('keydown', (event) => {
-      switch(event.keyCode) {
-        case 37:
-          if (this.moveLeft()) this.spawn();
-          this.render();
-          break;
-        case 38:
-          event.preventDefault();
-          if (this.moveUp()) this.spawn();
-          this.render();
-          break;
-        case 39:
-          if (this.moveRight()) this.spawn();
-          this.render();
-          break;
-        case 40:
-          event.preventDefault();
-          if (!this.moveDown()) this.spawn();
-          this.render();
-          break;
-        case 32:
-          this.spawn();
-          this.render();
-          break;
-      }
-    });
-
     return grid;
   }
 
@@ -199,7 +172,8 @@ class Board {
         div = document.getElementById(`${idx1}-${idx2}`);
         div.innerHTML = el;
         div.setAttribute('data-value', el);
-        $(div).addClass('animated jello');
+        $(div).addClass('animated pulse');
+        $("#1-1").css({ x: '30px' });
       });
     });
 

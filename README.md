@@ -1,6 +1,6 @@
-# JS Project Proposal: 2048
-### About 2048
-2048 is a single-player sliding-block puzzle game. The game is played on a square board with 16 squares, some of which are populated with numbers (all being powers of 2) - the rest of the squares are empty. The user can swipe left, right, up, and down which causes any available number-tiles to slide as far as they can in the direction of the swipe. Each time a swipe occurs a new number-tile is generated in a random empty location. When two number-tiles of the same value collide, they collapse into a single number-tile whose value is equal to the sum of the two. The object of the game is to get as high a number as possible before the board fills up.
+# JS Project Proposal: 4096
+### About 4096
+4096 is a single-player sliding-block puzzle game. The game is played on a square board with 16 squares, some of which are populated with numbers (all being powers of 2) - the rest of the squares are empty. The user can swipe left, right, up, and down which causes any available number-tiles to slide as far as they can in the direction of the swipe. Each time a swipe occurs a new number-tile is generated in a random empty location. When two number-tiles of the same value collide, they collapse into a single number-tile whose value is equal to the sum of the two. The object of the game is to get as high a number as possible before the board fills up.
 
 ### MVP
 To meet requirements necessary for playability, the game must meet the following criteria:
