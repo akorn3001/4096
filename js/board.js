@@ -130,7 +130,9 @@ class Board {
       } else if (this.grid[rowStart][colStart] && (this.grid[rowEnd][colEnd] === this.grid[rowStart][colStart])) {
         this.grid[rowEnd][colEnd] += this.grid[rowStart][colStart];
         this.score += this.grid[rowEnd][colEnd];
-        this.best += this.grid[rowEnd][colEnd];
+        if (this.best <= this.score) {
+          this.best = this.score;
+        }
         this.clearCell(rowStart, colStart);
         return true;
       } else return false;
@@ -209,8 +211,8 @@ class Board {
     scoreDiv = document.getElementById('score');
     scoreDiv.innerHTML = this.score;
 
-    // bestDiv = document.getElementById('best');
-    // bestDiv.innerHTML = this.best;
+    bestDiv = document.getElementById('best');
+    bestDiv.innerHTML = this.best;
 
   }
 }
