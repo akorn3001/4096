@@ -16,10 +16,6 @@ class Board {
     return grid;
   }
 
-  // pos(row, col) {
-  //   return this.grid[row][col];
-  // }
-
   newGame() {
     this.grid.forEach((row, rowIdx) => {
       row.forEach((el, colIdx) => {
@@ -45,50 +41,70 @@ class Board {
     );
   }
 
-  innerLost() {
-    for (let row = 1; row < 3; row++) {
-      for (let col = 1; col < 3; col++) {
-        let el = this.grid[row][col];
-
-        if (!this.grid[row + 1][col] || this.grid[row + 1][col] === el) {
-          return false;
-        } else if (!this.grid[row - 1][col] || this.grid[row - 1][col] === el) {
-          return false;
-        } else if (!this.grid[row][col + 1] || this.grid[row][col + 1] === el) {
-          return false;
-        } else if (!this.grid[row][col - 1] || this.grid[row][col - 1] === el) {
-          return false;
-        }
-      }
-    }
-
-    return true;
-  }
-
-  // canMove(row, col, rowChange, colChange) {
-  //   if (
-  //     (this.grid[row][col] === this.grid[row + rowChange][col + colChange]) ||
-  //     (!this.grid[row + rowChange][col + colChange])
-  //   ) {
-  //     return true;
-  //   } else return false;
-  // }
-
-  // topBottomLost() {
-  //   [0, 3].forEach(row => {
-  //     for (let col = 0; col < 3; col++) {
-  //       if (this.canMove(row, col, 0, 1)) {
+  // innerLost() {
+  //   for (let row = 1; row < 3; row++) {
+  //     for (let col = 1; col < 3; col++) {
+  //       let el = this.grid[row][col];
+  //
+  //       if (!this.grid[row + 1][col] || this.grid[row + 1][col] === el) {
+  //         return false;
+  //       } else if (!this.grid[row - 1][col] || this.grid[row - 1][col] === el) {
+  //         return false;
+  //       } else if (!this.grid[row][col + 1] || this.grid[row][col + 1] === el) {
+  //         return false;
+  //       } else if (!this.grid[row][col - 1] || this.grid[row][col - 1] === el) {
   //         return false;
   //       }
   //     }
-  //   });
+  //   }
   //
   //   return true;
   // }
-
-  // outerLost() {
   //
+  // outerLost() {
+  //   if (
+  //     (!this.grid[0][0]) ||
+  //     (!this.grid[0][3]) ||
+  //     (!this.grid[3][0]) ||
+  //     (!this.grid[3][3]) ||
+  //     (this.grid[0][0] === this.grid[0][1]) ||
+  //     (this.grid[0][1] === this.grid[0][2]) ||
+  //     (this.grid[0][2] === this.grid[0][3]) ||
+  //     (this.grid[3][0] === this.grid[3][1]) ||
+  //     (this.grid[3][1] === this.grid[3][2]) ||
+  //     (this.grid[3][2] === this.grid[3][3]) ||
+  //     (this.grid[0][0] === this.grid[1][0]) ||
+  //     (this.grid[1][0] === this.grid[2][0]) ||
+  //     (this.grid[2][0] === this.grid[3][0]) ||
+  //     (this.grid[0][3] === this.grid[1][3]) ||
+  //     (this.grid[1][3] === this.grid[2][3]) ||
+  //     (this.grid[2][3] === this.grid[3][3])
+  //   ) {
+  //     return false;
+  //   } else return true;
   // }
+
+  lost() {
+    if (!this.notFull()) {
+
+      for (let row = 0; row < 3; row++) {
+        for (let col = 0; col < this.grid[row].length; col++) {
+          if (
+            (this.grid[row][col] === this.grid[row][col + 1]) ||
+             this.grid[row][col] === this.grid[row + 1][col]
+           )
+           {
+             return false;
+           }
+         }
+       }
+
+       return true;
+     }
+
+     return false;
+   }
+
 
   twoOrFour() {
     return (Math.floor(Math.random() * 10) <= 2 ? 4 : 2);
@@ -205,6 +221,7 @@ class Board {
         div.innerHTML = el;
         div.setAttribute('data-value', el);
         $(div).addClass('animated pulse');
+
       });
     });
 
@@ -217,9 +234,4 @@ class Board {
   }
 }
 
-class Tile {
-  constructor() {
-    this.lastPos = null;
-    this.currentPos = null;
-  }
-}
+module.exports = Board;

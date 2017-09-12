@@ -2,8 +2,17 @@ const Board = require('./board.js');
 
 class Game {
   constructor() {
+    this.board = new Board();
+  }
+
+  lost() {
 
   }
 }
 
-export default Game;
+
+
+
+
+
+module.exports = Game;
