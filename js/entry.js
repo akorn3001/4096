@@ -1,6 +1,5 @@
 const Board = require('./board.js');
 const Game = require('./game.js');
-const Tile = require('./tile.js');
 
 document.addEventListener('DOMContentLoaded', () => {
   let game = new Game();

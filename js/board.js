@@ -65,7 +65,9 @@ class Board {
         this.move(rowEnd, colEnd, rowChange, colChange);
         return true;
 
-      } else if (this.grid[rowStart][colStart] && (this.grid[rowEnd][colEnd] === this.grid[rowStart][colStart])) {
+      } else if (this.grid[rowStart][colStart] &&
+        (this.grid[rowEnd][colEnd] === this.grid[rowStart][colStart])) {
+
         this.grid[rowEnd][colEnd] += this.grid[rowStart][colStart];
         this.score += this.grid[rowEnd][colEnd];
         if (this.best <= this.score) {
@@ -137,6 +139,7 @@ class Board {
     let div;
     let scoreDiv;
     let bestDiv;
+
     this.grid.forEach((row, idx1) => {
       row.forEach((el, idx2) => {
         div = document.getElementById(`${idx1}-${idx2}`);
