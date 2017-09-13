@@ -16,19 +16,6 @@ class Board {
     return grid;
   }
 
-  newGame() {
-    this.grid.forEach((row, rowIdx) => {
-      row.forEach((el, colIdx) => {
-        this.clearCell(rowIdx, colIdx);
-      });
-    });
-
-    this.score = 0;
-    this.addTile(this.randNum(), this.randNum(), this.grid);
-    this.addTile(this.randNum(), this.randNum(), this.grid);
-    this.render();
-  }
-
   addTile(x, y, grid) {
     grid[x][y] = this.twoOrFour();
   }
@@ -40,71 +27,6 @@ class Board {
       this.grid[3].includes(null)
     );
   }
-
-  // innerLost() {
-  //   for (let row = 1; row < 3; row++) {
-  //     for (let col = 1; col < 3; col++) {
-  //       let el = this.grid[row][col];
-  //
-  //       if (!this.grid[row + 1][col] || this.grid[row + 1][col] === el) {
-  //         return false;
-  //       } else if (!this.grid[row - 1][col] || this.grid[row - 1][col] === el) {
-  //         return false;
-  //       } else if (!this.grid[row][col + 1] || this.grid[row][col + 1] === el) {
-  //         return false;
-  //       } else if (!this.grid[row][col - 1] || this.grid[row][col - 1] === el) {
-  //         return false;
-  //       }
-  //     }
-  //   }
-  //
-  //   return true;
-  // }
-  //
-  // outerLost() {
-  //   if (
-  //     (!this.grid[0][0]) ||
-  //     (!this.grid[0][3]) ||
-  //     (!this.grid[3][0]) ||
-  //     (!this.grid[3][3]) ||
-  //     (this.grid[0][0] === this.grid[0][1]) ||
-  //     (this.grid[0][1] === this.grid[0][2]) ||
-  //     (this.grid[0][2] === this.grid[0][3]) ||
-  //     (this.grid[3][0] === this.grid[3][1]) ||
-  //     (this.grid[3][1] === this.grid[3][2]) ||
-  //     (this.grid[3][2] === this.grid[3][3]) ||
-  //     (this.grid[0][0] === this.grid[1][0]) ||
-  //     (this.grid[1][0] === this.grid[2][0]) ||
-  //     (this.grid[2][0] === this.grid[3][0]) ||
-  //     (this.grid[0][3] === this.grid[1][3]) ||
-  //     (this.grid[1][3] === this.grid[2][3]) ||
-  //     (this.grid[2][3] === this.grid[3][3])
-  //   ) {
-  //     return false;
-  //   } else return true;
-  // }
-
-  lost() {
-    if (!this.notFull()) {
-
-      for (let row = 0; row < 3; row++) {
-        for (let col = 0; col < this.grid[row].length; col++) {
-          if (
-            (this.grid[row][col] === this.grid[row][col + 1]) ||
-             this.grid[row][col] === this.grid[row + 1][col]
-           )
-           {
-             return false;
-           }
-         }
-       }
-
-       return true;
-     }
-
-     return false;
-   }
-
 
   twoOrFour() {
     return (Math.floor(Math.random() * 10) <= 2 ? 4 : 2);
@@ -220,8 +142,6 @@ class Board {
         div = document.getElementById(`${idx1}-${idx2}`);
         div.innerHTML = el;
         div.setAttribute('data-value', el);
-        $(div).addClass('animated pulse');
-
       });
     });
 
