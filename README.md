@@ -3,7 +3,7 @@
 
 4096 is a clone of the popular sliding-block puzzle game, 2048.
 
-[4096 Live](akorn3001.github.io/4096)
+[4096 Live](alex-kornfeld.com/4096)
 
 ## The Goal
 There goal of 4096 isn't so much to 'win', but to last as long as you can before the board fills up with new tiles. Slide the tiles into one another and get them to add to a higher and higher tile!
