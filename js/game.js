@@ -53,10 +53,15 @@ class Game {
     return true;
   }
 
-  render() {
-    if (this.isLost()) {
-      alert('You Lost!');
-    }
+  modalShow() {
+    const modal = document.getElementById('game-lost-modal');
+    modal.style.display = 'block';
+  }
+
+  modalHide() {
+    const modal = document.getElementById('game-lost-modal');
+    this.newGame();
+    modal.style.display = 'none';
   }
 }
 

@@ -27,5 +27,10 @@ The `move` function as defined in the `Board` class determines movement rules fo
 
 In the `Board` class' render method, the background board of divs is dynamically updated by setting the `innerHTML` of the divs with the number value stored at that position in the grid. The divs are then given a `data-value` attribute set to that number-value so that the color may be updated directly with CSS.
 
+## Game over! Oh no!
+![](Images/game_over_modal.png)
+
+A modal is used to inform the user that the game has been lost. Clicking the 'Try again' button toggle's the modal's visibility to `none` as well as starting a new game.
+
 ## Moving Forward
 Moving forward the biggest feature I want to implement would be sliding animations for the tiles. This will require rearchitecting the game to use a Tile class rather than updating the background divs directly so that the tiles may track their former and current positions.
