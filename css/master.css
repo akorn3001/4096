@@ -165,15 +165,21 @@ hr {
   right: 10px;
   position: absolute;
   display: flex;
+  flex-direction: column;
+  align-items: flex-end;
   font-size: 25px;
-  margin-bottom: 20px;
 }
 
-.my-info span {
-  margin-right: 15px;
+.my-name {
+  color: #776E65;
+  bottom: 10px;
+  right: 10px;
+  position: absolute;
+  font-size: 25px;
 }
 
 .my-info a {
+  color: #776E65;
   text-decoration: none;
 }
 
