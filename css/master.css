@@ -181,6 +181,7 @@ hr {
 .my-info a {
   color: #776E65;
   text-decoration: none;
+  margin-bottom: 15px;
 }
 
 #game-lost-modal {
